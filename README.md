@@ -2,6 +2,8 @@
 
 A complete, production-ready Loan Management System built with MongoDB, Express, React, and Node.js. Customers can apply for loans, upload documents, track approval status, and make repayments. Admins can review applications, approve/reject loans, manage customers, and view reports.
 
+**Live Demo:** https://loan-management-system-six-zeta.vercel.app/
+
 ## Features
 
 - JWT authentication with role-based access control (customer / admin)
