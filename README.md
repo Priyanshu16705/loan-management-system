@@ -194,3 +194,5 @@ git push -u origin main
 - This is a learning/demo project, not audited for production financial use. Don't connect it to real money without a proper security review and a licensed payment gateway integration (Razorpay/Stripe are not wired in — see the original spec's "optional premium features").
 - File uploads are stored on local disk (`backend/uploads/`). Render's free tier has an ephemeral filesystem — uploaded files will be lost on redeploy/restart. For real persistence, swap `multer.diskStorage` for a Cloudinary or S3 upload in `backend/middleware/upload.js`.
 - Email sending fails silently (try/catch) if SMTP credentials are missing or wrong — the rest of the app keeps working.
+
+  **Author:** Priyanshu
