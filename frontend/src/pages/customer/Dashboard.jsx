@@ -35,20 +35,26 @@ const Dashboard = () => {
 
   return (
     <DashboardLayout>
-      <div style={{ marginBottom: 28 }}>
+      <div style={{ marginBottom: 28, animation: 'fadeInUp 0.4s ease' }}>
         <h1 style={{ fontSize: 26 }}>Welcome back, {user.name?.split(' ')[0]}</h1>
         <p style={{ color: 'var(--color-text-muted)' }}>Here's what's happening with your loans today.</p>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginBottom: 28 }}>
-        <StatCard label="Total loans" value={stats.totalLoans} icon="📂" />
-        <StatCard label="Active loans" value={stats.activeLoans} icon="✅" accent="var(--color-success-light)" />
-        <StatCard label="Paid so far" value={formatCurrency(stats.paidAmount)} icon="💸" accent="var(--color-accent-light)" />
-        <StatCard label="Remaining balance" value={formatCurrency(stats.remainingBalance)} icon="⏳" accent="var(--color-pending-light)" />
+        {[
+          { label: 'Total loans', value: stats.totalLoans, icon: '📂' },
+          { label: 'Active loans', value: stats.activeLoans, icon: '✅', accent: 'var(--color-success-light)' },
+          { label: 'Paid so far', value: formatCurrency(stats.paidAmount), icon: '💸', accent: 'var(--color-accent-light)' },
+          { label: 'Remaining balance', value: formatCurrency(stats.remainingBalance), icon: '⏳', accent: 'var(--color-pending-light)' },
+        ].map((s, i) => (
+          <div key={s.label} style={{ animation: 'fadeInUp 0.4s ease forwards', animationDelay: `${i * 0.08}s`, opacity: 0 }}>
+            <StatCard label={s.label} value={s.value} icon={s.icon} accent={s.accent} />
+          </div>
+        ))}
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '320px 1fr', gap: 20 }}>
-        <div className="card">
+        <div className="card" style={{ animation: 'fadeInUp 0.4s ease 0.3s both' }}>
           <h3 style={{ fontSize: 16, marginBottom: 16 }}>Repayment progress</h3>
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 16 }}>
             <svg width="160" height="160" viewBox="0 0 160 160">
@@ -74,7 +80,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="card">
+        <div className="card" style={{ animation: 'fadeInUp 0.4s ease 0.4s both' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
             <h3 style={{ fontSize: 16 }}>Recent loan applications</h3>
             <Link to="/my-loans" style={{ fontSize: 13, color: 'var(--color-primary)', fontWeight: 600 }}>View all →</Link>
@@ -95,8 +101,8 @@ const Dashboard = () => {
                 </tr>
               </thead>
               <tbody>
-                {loans.map((l) => (
-                  <tr key={l._id} style={{ borderTop: '1px solid var(--color-border)' }}>
+                {loans.map((l, i) => (
+                  <tr key={l._id} style={{ borderTop: '1px solid var(--color-border)', animation: 'fadeIn 0.3s ease forwards', animationDelay: `${i * 0.06}s`, opacity: 0 }}>
                     <td style={{ padding: '10px 0' }}>{l.loanType}</td>
                     <td>{formatCurrency(l.amount)}</td>
                     <td>{formatDate(l.createdAt)}</td>

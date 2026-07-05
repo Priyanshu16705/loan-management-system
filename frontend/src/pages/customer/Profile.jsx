@@ -39,9 +39,9 @@ const Profile = () => {
 
   return (
     <DashboardLayout>
-      <h1 style={{ fontSize: 26, marginBottom: 24 }}>Profile settings</h1>
+      <h1 style={{ fontSize: 26, marginBottom: 24, animation: 'fadeInUp 0.4s ease' }}>Profile settings</h1>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, maxWidth: 800 }}>
-        <form onSubmit={submitProfile} className="card">
+        <form onSubmit={submitProfile} className="card" style={{ animation: 'fadeInUp 0.4s ease 0.1s both' }}>
           <h3 style={{ fontSize: 15, marginBottom: 16 }}>Personal information</h3>
           {msg && <div style={{ background: 'var(--color-success-light)', color: 'var(--color-success)', padding: 10, borderRadius: 8, fontSize: 13, marginBottom: 16 }}>{msg}</div>}
           <div className="field"><label>Full name</label><input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} /></div>
@@ -51,7 +51,7 @@ const Profile = () => {
           <button type="submit" className="btn btn-primary">Save changes</button>
         </form>
 
-        <form onSubmit={submitPassword} className="card">
+        <form onSubmit={submitPassword} className="card" style={{ animation: 'fadeInUp 0.4s ease 0.15s both' }}>
           <h3 style={{ fontSize: 15, marginBottom: 16 }}>Change password</h3>
           {pwMsg && <div style={{ background: pwMsg.includes('success') ? 'var(--color-success-light)' : 'var(--color-danger-light)', color: pwMsg.includes('success') ? 'var(--color-success)' : 'var(--color-danger)', padding: 10, borderRadius: 8, fontSize: 13, marginBottom: 16 }}>{pwMsg}</div>}
           <div className="field"><label>Current password</label><input type="password" required value={pwForm.currentPassword} onChange={(e) => setPwForm({ ...pwForm, currentPassword: e.target.value })} /></div>

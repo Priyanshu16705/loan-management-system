@@ -29,8 +29,8 @@ const ResetPassword = () => {
   return (
     <>
       <Navbar />
-      <div style={{ minHeight: 'calc(100vh - 64px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
-        <div className="card" style={{ width: 400 }}>
+      <div style={{ minHeight: 'calc(100vh - 64px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24, animation: 'fadeIn 0.3s ease' }}>
+        <div className="card" style={{ width: 400, animation: 'fadeInUp 0.4s ease' }}>
           <h2 style={{ fontSize: 22, marginBottom: 4 }}>Set a new password</h2>
           {success ? (
             <div style={{ background: 'var(--color-success-light)', color: 'var(--color-success)', padding: 14, borderRadius: 8, fontSize: 14, marginTop: 16 }}>

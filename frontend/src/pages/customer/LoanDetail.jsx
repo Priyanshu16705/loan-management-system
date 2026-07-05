@@ -37,14 +37,14 @@ const LoanDetail = () => {
 
   return (
     <DashboardLayout>
-      <Link to="/my-loans" style={{ fontSize: 13, color: 'var(--color-primary)' }}>← Back to my loans</Link>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '12px 0 24px' }}>
+      <Link to="/my-loans" style={{ fontSize: 13, color: 'var(--color-primary)', transition: 'opacity 0.2s' }} onMouseEnter={e => e.currentTarget.style.opacity = '0.7'} onMouseLeave={e => e.currentTarget.style.opacity = '1'}>← Back to my loans</Link>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '12px 0 24px', animation: 'fadeInUp 0.4s ease' }}>
         <h1 style={{ fontSize: 26 }}>{loan.loanType} loan</h1>
         <Badge status={loan.status} />
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
-        <div className="card">
+        <div className="card" style={{ animation: 'fadeInUp 0.4s ease 0.1s both' }}>
           <h3 style={{ fontSize: 15, marginBottom: 16 }}>Loan details</h3>
           {[
             ['Principal amount', formatCurrency(loan.amount)],
@@ -53,8 +53,8 @@ const LoanDetail = () => {
             ['Monthly EMI', formatCurrency(loan.monthlyEMI)],
             ['Total payable', formatCurrency(loan.totalAmount)],
             ['Applied on', formatDate(loan.createdAt)],
-          ].map(([label, val]) => (
-            <div key={label} style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 0', borderBottom: '1px solid var(--color-border)', fontSize: 14 }}>
+          ].map(([label, val], i) => (
+            <div key={label} style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 0', borderBottom: '1px solid var(--color-border)', fontSize: 14, animation: 'fadeIn 0.3s ease forwards', animationDelay: `${0.2 + i * 0.05}s`, opacity: 0 }}>
               <span style={{ color: 'var(--color-text-muted)' }}>{label}</span><strong>{val}</strong>
             </div>
           ))}
@@ -65,7 +65,7 @@ const LoanDetail = () => {
           )}
         </div>
 
-        <div className="card">
+        <div className="card" style={{ animation: 'fadeInUp 0.4s ease 0.15s both' }}>
           <h3 style={{ fontSize: 15, marginBottom: 16 }}>Uploaded documents</h3>
           {docs.length === 0 ? <p style={{ color: 'var(--color-text-muted)', fontSize: 14 }}>No documents uploaded.</p> : (
             <div style={{ display: 'grid', gap: 8 }}>

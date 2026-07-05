@@ -42,11 +42,11 @@ const Repayments = () => {
 
   return (
     <DashboardLayout>
-      <h1 style={{ fontSize: 26, marginBottom: 4 }}>Repayments</h1>
-      <p style={{ color: 'var(--color-text-muted)', marginBottom: 28 }}>Make a payment toward an active loan and track EMI dues.</p>
+      <h1 style={{ fontSize: 26, marginBottom: 4, animation: 'fadeInUp 0.4s ease' }}>Repayments</h1>
+      <p style={{ color: 'var(--color-text-muted)', marginBottom: 28, animation: 'fadeInUp 0.4s ease 0.05s both' }}>Make a payment toward an active loan and track EMI dues.</p>
 
       <div style={{ display: 'grid', gridTemplateColumns: '380px 1fr', gap: 24 }}>
-        <div className="card">
+        <div className="card" style={{ animation: 'fadeInUp 0.4s ease 0.1s both' }}>
           <h3 style={{ fontSize: 15, marginBottom: 16 }}>Make a payment</h3>
           {activeLoans.length === 0 ? (
             <p style={{ color: 'var(--color-text-muted)', fontSize: 14 }}>You have no active loans to repay yet.</p>
@@ -78,7 +78,7 @@ const Repayments = () => {
           )}
         </div>
 
-        <div className="card">
+        <div className="card" style={{ animation: 'slideInRight 0.4s ease 0.15s both' }}>
           <h3 style={{ fontSize: 15, marginBottom: 16 }}>Payment history</h3>
           {payments.length === 0 ? <p style={{ color: 'var(--color-text-muted)', fontSize: 14 }}>No payments yet.</p> : (
             <table style={{ width: '100%', fontSize: 14 }}>
