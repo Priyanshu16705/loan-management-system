@@ -23,10 +23,10 @@ const Reports = () => {
 
   return (
     <DashboardLayout isAdmin>
-      <h1 style={{ fontSize: 26, marginBottom: 4 }}>Reports</h1>
-      <p style={{ color: 'var(--color-text-muted)', marginBottom: 24 }}>Monthly collection trends and loan statistics.</p>
+      <h1 style={{ fontSize: 26, marginBottom: 4, animation: 'fadeInUp 0.4s ease' }}>Reports</h1>
+      <p style={{ color: 'var(--color-text-muted)', marginBottom: 24, animation: 'fadeInUp 0.4s ease 0.05s both' }}>Monthly collection trends and loan statistics.</p>
 
-      <div className="card" style={{ marginBottom: 20 }}>
+      <div className="card" style={{ marginBottom: 20, animation: 'fadeInUp 0.4s ease 0.1s both' }}>
         <h3 style={{ fontSize: 15, marginBottom: 20 }}>Monthly collections</h3>
         {report.length === 0 ? <p style={{ color: 'var(--color-text-muted)' }}>No payment data yet.</p> : (
           <ResponsiveContainer width="100%" height={300}>
@@ -42,9 +42,16 @@ const Reports = () => {
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
-        <div className="card"><div style={{ fontSize: 13, color: 'var(--color-text-muted)' }}>Total loans issued</div><div style={{ fontSize: 24, fontWeight: 800 }}>{stats.totalLoans}</div></div>
-        <div className="card"><div style={{ fontSize: 13, color: 'var(--color-text-muted)' }}>Total collected</div><div style={{ fontSize: 24, fontWeight: 800 }}>{formatCurrency(stats.totalCollected)}</div></div>
-        <div className="card"><div style={{ fontSize: 13, color: 'var(--color-text-muted)' }}>Active loans</div><div style={{ fontSize: 24, fontWeight: 800 }}>{stats.activeLoans}</div></div>
+        {[
+          { label: 'Total loans issued', value: stats.totalLoans },
+          { label: 'Total collected', value: formatCurrency(stats.totalCollected) },
+          { label: 'Active loans', value: stats.activeLoans },
+        ].map((s, i) => (
+          <div key={s.label} className="card" style={{ animation: 'fadeInUp 0.4s ease forwards', animationDelay: `${0.2 + i * 0.08}s`, opacity: 0 }}>
+            <div style={{ fontSize: 13, color: 'var(--color-text-muted)' }}>{s.label}</div>
+            <div style={{ fontSize: 24, fontWeight: 800 }}>{s.value}</div>
+          </div>
+        ))}
       </div>
     </DashboardLayout>
   );

@@ -26,8 +26,8 @@ const ForgotPassword = () => {
   return (
     <>
       <Navbar />
-      <div style={{ minHeight: 'calc(100vh - 64px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
-        <div className="card" style={{ width: 400 }}>
+      <div style={{ minHeight: 'calc(100vh - 64px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24, animation: 'fadeIn 0.3s ease' }}>
+        <div className="card" style={{ width: 400, animation: 'fadeInUp 0.4s ease' }}>
           <h2 style={{ fontSize: 22, marginBottom: 4 }}>Reset your password</h2>
           <p style={{ color: 'var(--color-text-muted)', fontSize: 14, marginBottom: 24 }}>We'll email you a reset link</p>
           {sent ? (

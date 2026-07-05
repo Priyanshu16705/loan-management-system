@@ -20,7 +20,7 @@ const MyLoans = () => {
 
   return (
     <DashboardLayout>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24, animation: 'fadeInUp 0.4s ease' }}>
         <div>
           <h1 style={{ fontSize: 26 }}>My loans</h1>
           <p style={{ color: 'var(--color-text-muted)' }}>Track every application you've submitted.</p>
@@ -28,7 +28,7 @@ const MyLoans = () => {
         <Link to="/apply-loan" className="btn btn-primary">+ New application</Link>
       </div>
 
-      <div style={{ display: 'flex', gap: 8, marginBottom: 20 }}>
+      <div style={{ display: 'flex', gap: 8, marginBottom: 20, animation: 'fadeInUp 0.3s ease 0.1s both' }}>
         {filters.map((f) => (
           <button key={f} onClick={() => setFilter(f)} className={`btn btn-sm ${filter === f ? 'btn-primary' : 'btn-outline'}`} style={{ textTransform: 'capitalize' }}>
             {f}
@@ -37,14 +37,14 @@ const MyLoans = () => {
       </div>
 
       {loading ? <Spinner /> : loans.length === 0 ? (
-        <div className="card" style={{ textAlign: 'center', padding: 48 }}>
+        <div className="card" style={{ textAlign: 'center', padding: 48, animation: 'fadeInUp 0.3s ease 0.2s both' }}>
           <p style={{ color: 'var(--color-text-muted)', marginBottom: 16 }}>No loans found for this filter.</p>
           <Link to="/apply-loan" className="btn btn-primary btn-sm">Apply for a loan</Link>
         </div>
       ) : (
         <div style={{ display: 'grid', gap: 12 }}>
-          {loans.map((l) => (
-            <Link to={`/my-loans/${l._id}`} key={l._id} className="card" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          {loans.map((l, i) => (
+            <Link to={`/my-loans/${l._id}`} key={l._id} className="card" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', animation: 'fadeInUp 0.3s ease forwards', animationDelay: `${i * 0.05}s`, opacity: 0 }}>
               <div>
                 <div style={{ fontWeight: 700, marginBottom: 4 }}>{l.loanType} loan</div>
                 <div style={{ fontSize: 13, color: 'var(--color-text-muted)' }}>Applied {formatDate(l.createdAt)} · {l.tenureMonths} months</div>

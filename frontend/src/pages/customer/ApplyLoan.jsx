@@ -55,11 +55,11 @@ const ApplyLoan = () => {
 
   return (
     <DashboardLayout>
-      <h1 style={{ fontSize: 26, marginBottom: 4 }}>Apply for a loan</h1>
-      <p style={{ color: 'var(--color-text-muted)', marginBottom: 28 }}>Fill in the details below — we'll calculate your EMI instantly.</p>
+      <h1 style={{ fontSize: 26, marginBottom: 4, animation: 'fadeInUp 0.4s ease' }}>Apply for a loan</h1>
+      <p style={{ color: 'var(--color-text-muted)', marginBottom: 28, animation: 'fadeInUp 0.4s ease 0.05s both' }}>Fill in the details below — we'll calculate your EMI instantly.</p>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: 24 }}>
-        <form onSubmit={submit} className="card">
+        <form onSubmit={submit} className="card" style={{ animation: 'fadeInUp 0.4s ease 0.1s both' }}>
           {error && <div style={{ background: 'var(--color-danger-light)', color: 'var(--color-danger)', padding: 10, borderRadius: 8, fontSize: 13, marginBottom: 16 }}>{error}</div>}
 
           <div className="field">
@@ -107,7 +107,7 @@ const ApplyLoan = () => {
           <button type="submit" className="btn btn-primary btn-block" disabled={loading}>{loading ? 'Submitting…' : 'Submit application'}</button>
         </form>
 
-        <div className="card" style={{ alignSelf: 'start' }}>
+        <div className="card" style={{ alignSelf: 'start', animation: 'slideInRight 0.4s ease 0.15s both' }}>
           <h3 style={{ fontSize: 15, marginBottom: 16 }}>Estimated EMI</h3>
           {emi ? (
             <>

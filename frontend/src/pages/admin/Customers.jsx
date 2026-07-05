@@ -24,11 +24,11 @@ const Customers = () => {
 
   return (
     <DashboardLayout isAdmin>
-      <h1 style={{ fontSize: 26, marginBottom: 4 }}>Customers</h1>
-      <p style={{ color: 'var(--color-text-muted)', marginBottom: 24 }}>View and manage registered customers.</p>
+      <h1 style={{ fontSize: 26, marginBottom: 4, animation: 'fadeInUp 0.4s ease' }}>Customers</h1>
+      <p style={{ color: 'var(--color-text-muted)', marginBottom: 24, animation: 'fadeInUp 0.4s ease 0.05s both' }}>View and manage registered customers.</p>
 
       {loading ? <Spinner /> : (
-        <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
+        <div className="card" style={{ padding: 0, overflow: 'hidden', animation: 'fadeInUp 0.4s ease 0.1s both' }}>
           <table style={{ width: '100%', fontSize: 14 }}>
             <thead>
               <tr style={{ textAlign: 'left', color: 'var(--color-text-muted)', fontSize: 12, background: 'var(--color-bg)' }}>
@@ -36,8 +36,8 @@ const Customers = () => {
               </tr>
             </thead>
             <tbody>
-              {users.map((u) => (
-                <tr key={u._id} style={{ borderTop: '1px solid var(--color-border)' }}>
+              {users.map((u, i) => (
+                <tr key={u._id} style={{ borderTop: '1px solid var(--color-border)', animation: 'fadeIn 0.3s ease forwards', animationDelay: `${i * 0.03}s`, opacity: 0 }}>
                   <td style={{ padding: '14px 20px', fontWeight: 600 }}>{u.name}</td>
                   <td>{u.email}</td>
                   <td>{u.phone}</td>

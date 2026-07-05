@@ -23,6 +23,9 @@
   --shadow-sm: 0 1px 2px rgba(20, 23, 43, 0.06);
   --shadow-md: 0 4px 16px rgba(20, 23, 43, 0.08);
   --shadow-lg: 0 12px 32px rgba(20, 23, 43, 0.12);
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.25s ease;
+  --transition-slow: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,6 +38,69 @@ body {
   color: var(--color-text);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+}
+
+/* ── Keyframe Animations ── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.7; }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes spinSlow {
+  to { transform: rotate(360deg); }
+}
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes ripple {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* ── Animation Utility Classes ── */
+.animate-in       { animation: fadeIn var(--transition-base) ease forwards; }
+.animate-in-up    { animation: fadeInUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-in-down { animation: fadeInDown var(--transition-base) ease forwards; }
+.animate-in-scale { animation: fadeInScale var(--transition-base) ease forwards; }
+.animate-slide-right { animation: slideInRight 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-slide-left  { animation: slideInLeft 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+
+/* Stagger helpers — add data-delay via style or class */
+[style*="--i"] { animation-delay: calc(var(--i) * 80ms); }
+
+/* Skeleton shimmer loading */
+.skeleton {
+  background: linear-gradient(90deg, var(--color-border) 25%, var(--color-bg) 50%, var(--color-border) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-sm);
 }
 
 h1, h2, h3, h4, .display {
@@ -58,27 +124,37 @@ input, select, textarea { font-family: inherit; }
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   padding: 11px 22px; border-radius: var(--radius-sm); font-weight: 600; font-size: 14px;
-  border: none; transition: transform .12s ease, box-shadow .12s ease, background .15s ease;
-  white-space: nowrap;
+  border: none; transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+  white-space: nowrap; position: relative; overflow: hidden;
 }
-.btn:active { transform: scale(0.98); }
+.btn:active { transform: scale(0.97); }
 .btn-primary { background: var(--color-primary); color: #fff; }
-.btn-primary:hover { background: var(--color-primary-dark); box-shadow: var(--shadow-md); }
+.btn-primary:hover { background: var(--color-primary-dark); box-shadow: 0 4px 14px rgba(26, 63, 196, 0.35); transform: translateY(-1px); }
 .btn-outline { background: transparent; border: 1.5px solid var(--color-border); color: var(--color-text); }
-.btn-outline:hover { border-color: var(--color-primary); color: var(--color-primary); }
+.btn-outline:hover { border-color: var(--color-primary); color: var(--color-primary); background: var(--color-primary-light); }
 .btn-danger { background: var(--color-danger-light); color: var(--color-danger); }
-.btn-danger:hover { background: var(--color-danger); color: #fff; }
+.btn-danger:hover { background: var(--color-danger); color: #fff; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(196, 49, 26, 0.3); }
 .btn-success { background: var(--color-success-light); color: var(--color-success); }
-.btn-success:hover { background: var(--color-success); color: #fff; }
+.btn-success:hover { background: var(--color-success); color: #fff; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(23, 138, 76, 0.3); }
 .btn-sm { padding: 7px 14px; font-size: 13px; }
 .btn-block { width: 100%; }
-.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
 
 /* Cards */
 .card {
   background: var(--color-surface); border: 1px solid var(--color-border);
   border-radius: var(--radius-md); padding: 24px; box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
 }
+.card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: color-mix(in srgb, var(--color-border) 80%, var(--color-primary) 20%);
+}
+a.card { display: block; }
+a.card:hover { transform: translateY(-2px); }
+.card:hover .stat-icon { transform: scale(1.1) rotate(-3deg); }
+.sidebar-logo { transition: transform 0.3s ease, border-radius 0.3s ease !important; }
+aside:hover .sidebar-logo { transform: scale(1.1) rotate(-5deg); border-radius: 30% !important; }
 
 /* Forms */
 .field { margin-bottom: 18px; }
@@ -95,7 +171,12 @@ input, select, textarea { font-family: inherit; }
 .badge {
   display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; border-radius: 20px;
   font-size: 12px; font-weight: 600; text-transform: capitalize;
+  transition: transform var(--transition-fast);
 }
+.badge:hover { transform: scale(1.05); }
+
+/* Badge entrance */
+tr .badge, .card .badge { animation: fadeInScale 0.3s ease forwards; }
 .badge-pending { background: var(--color-pending-light); color: var(--color-pending); }
 .badge-approved, .badge-disbursed { background: var(--color-success-light); color: var(--color-success); }
 .badge-rejected { background: var(--color-danger-light); color: var(--color-danger); }

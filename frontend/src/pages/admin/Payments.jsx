@@ -12,11 +12,11 @@ const Payments = () => {
 
   return (
     <DashboardLayout isAdmin>
-      <h1 style={{ fontSize: 26, marginBottom: 4 }}>Payments</h1>
-      <p style={{ color: 'var(--color-text-muted)', marginBottom: 24 }}>All repayments received from customers.</p>
+      <h1 style={{ fontSize: 26, marginBottom: 4, animation: 'fadeInUp 0.4s ease' }}>Payments</h1>
+      <p style={{ color: 'var(--color-text-muted)', marginBottom: 24, animation: 'fadeInUp 0.4s ease 0.05s both' }}>All repayments received from customers.</p>
 
       {loading ? <Spinner /> : (
-        <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
+        <div className="card" style={{ padding: 0, overflow: 'hidden', animation: 'fadeInUp 0.4s ease 0.1s both' }}>
           <table style={{ width: '100%', fontSize: 14 }}>
             <thead>
               <tr style={{ textAlign: 'left', color: 'var(--color-text-muted)', fontSize: 12, background: 'var(--color-bg)' }}>
@@ -24,8 +24,8 @@ const Payments = () => {
               </tr>
             </thead>
             <tbody>
-              {payments.map((p) => (
-                <tr key={p._id} style={{ borderTop: '1px solid var(--color-border)' }}>
+              {payments.map((p, i) => (
+                <tr key={p._id} style={{ borderTop: '1px solid var(--color-border)', animation: 'fadeIn 0.3s ease forwards', animationDelay: `${i * 0.03}s`, opacity: 0 }}>
                   <td style={{ padding: '14px 20px' }}>{p.userId?.name}</td>
                   <td>{p.loanId?.loanType}</td>
                   <td style={{ fontWeight: 600 }}>{formatCurrency(p.amountPaid)}</td>

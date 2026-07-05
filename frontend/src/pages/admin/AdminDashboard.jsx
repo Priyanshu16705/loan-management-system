@@ -25,18 +25,24 @@ const AdminDashboard = () => {
 
   return (
     <DashboardLayout isAdmin>
-      <h1 style={{ fontSize: 26, marginBottom: 4 }}>Admin dashboard</h1>
-      <p style={{ color: 'var(--color-text-muted)', marginBottom: 28 }}>Overview of all customers, loans, and payments.</p>
+      <h1 style={{ fontSize: 26, marginBottom: 4, animation: 'fadeInUp 0.4s ease' }}>Admin dashboard</h1>
+      <p style={{ color: 'var(--color-text-muted)', marginBottom: 28, animation: 'fadeInUp 0.4s ease 0.05s both' }}>Overview of all customers, loans, and payments.</p>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 16, marginBottom: 28 }}>
-        <StatCard label="Total customers" value={stats.totalUsers} icon="👥" />
-        <StatCard label="Total loans" value={stats.totalLoans} icon="📂" />
-        <StatCard label="Pending review" value={stats.pendingLoans} icon="⏳" accent="var(--color-pending-light)" />
-        <StatCard label="Active loans" value={stats.activeLoans} icon="✅" accent="var(--color-success-light)" />
-        <StatCard label="Total collected" value={formatCurrency(stats.totalCollected)} icon="💰" accent="var(--color-accent-light)" />
+        {[
+          { label: 'Total customers', value: stats.totalUsers, icon: '👥' },
+          { label: 'Total loans', value: stats.totalLoans, icon: '📂' },
+          { label: 'Pending review', value: stats.pendingLoans, icon: '⏳', accent: 'var(--color-pending-light)' },
+          { label: 'Active loans', value: stats.activeLoans, icon: '✅', accent: 'var(--color-success-light)' },
+          { label: 'Total collected', value: formatCurrency(stats.totalCollected), icon: '💰', accent: 'var(--color-accent-light)' },
+        ].map((s, i) => (
+          <div key={s.label} style={{ animation: 'fadeInUp 0.4s ease forwards', animationDelay: `${i * 0.07}s`, opacity: 0 }}>
+            <StatCard label={s.label} value={s.value} icon={s.icon} accent={s.accent} />
+          </div>
+        ))}
       </div>
 
-      <div className="card">
+      <div className="card" style={{ animation: 'fadeInUp 0.4s ease 0.35s both' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
           <h3 style={{ fontSize: 16 }}>Recent loan applications</h3>
           <Link to="/admin/loans" style={{ fontSize: 13, color: 'var(--color-primary)', fontWeight: 600 }}>View all →</Link>

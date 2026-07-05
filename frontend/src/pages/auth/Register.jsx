@@ -27,8 +27,8 @@ const Register = () => {
   return (
     <>
       <Navbar />
-      <div style={{ minHeight: 'calc(100vh - 64px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
-        <div className="card" style={{ width: 440 }}>
+      <div style={{ minHeight: 'calc(100vh - 64px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24, animation: 'fadeIn 0.3s ease' }}>
+        <div className="card" style={{ width: 440, animation: 'fadeInUp 0.4s ease' }}>
           <h2 style={{ fontSize: 24, marginBottom: 4 }}>Create your account</h2>
           <p style={{ color: 'var(--color-text-muted)', fontSize: 14, marginBottom: 24 }}>Start your loan journey in minutes</p>
           {error && <div style={{ background: 'var(--color-danger-light)', color: 'var(--color-danger)', padding: 10, borderRadius: 8, fontSize: 13, marginBottom: 16 }}>{error}</div>}
