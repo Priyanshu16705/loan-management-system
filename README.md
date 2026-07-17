@@ -195,4 +195,6 @@ git push -u origin main
 - File uploads are stored on local disk (`backend/uploads/`). Render's free tier has an ephemeral filesystem — uploaded files will be lost on redeploy/restart. For real persistence, swap `multer.diskStorage` for a Cloudinary or S3 upload in `backend/middleware/upload.js`.
 - Email sending fails silently (try/catch) if SMTP credentials are missing or wrong — the rest of the app keeps working.
 
-  **Author:** Priyanshu
+## Developer
+**Priyanshu kumar**
+**GitHub** https://github.com/Priyanshu16705/
