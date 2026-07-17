@@ -197,4 +197,4 @@ git push -u origin main
 
 ## Developer
 **Priyanshu kumar**
-**GitHub** https://github.com/Priyanshu16705/
+- **GitHub** https://github.com/Priyanshu16705/
